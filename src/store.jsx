@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-//this is the Reducer function
+//this is the Reducer function (Create Reducer Functions )
 const ADD_Task = "task/add";
 const DELETE_Task = "task/delete";
 
