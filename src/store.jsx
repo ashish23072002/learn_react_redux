@@ -1,6 +1,5 @@
-import { createStore } from "redux"
+import { createStore } from "redux";
 /* eslint-disable no-case-declarations */
-
 
 //this is the Reducer function (Create Reducer Functions )
 const ADD_Task = "task/add";
@@ -10,7 +9,7 @@ const intialState = {
   task: [],
 };
 
-// create a simple reducer function 
+// create a simple reducer function
 const taskReducer = (state = intialState, action) => {
   switch (action.type) {
     case ADD_Task:
@@ -32,25 +31,43 @@ const taskReducer = (state = intialState, action) => {
   }
 };
 
-// create react store using reducer 
-// installed redux 
+// create react store using reducer
+// installed redux
 
-const store = createStore(taskReducer)
+const store = createStore(taskReducer);
 console.log(store);
-
-
 // login to the intialState
-console.log("Initial state",store.getState());
+console.log("Initial state", store.getState());
 
-
+// Step 4: DisPatch an action to Add a Task
 //how to Dispatch a method Using Dispatch Method (for adding into the array)
-store.dispatch({type:ADD_Task,payload:"Add this line"})
-console.log("Updated state",store.getState());
+store.dispatch({ type: ADD_Task, payload: "Add this line" });
+console.log("Updated state", store.getState());
 
 //(for adding into the array)
-store.dispatch({type:ADD_Task,payload:"This is the second Line for adding"})
-console.log("Updated state",store.getState());
+store.dispatch({
+  type: ADD_Task,
+  payload: "This is the second Line for adding",
+});
+console.log("Updated state", store.getState());
 
 //deleteing
-store.dispatch({type:DELETE_Task,payload:1})
-console.log("Deleted state",store.getState());
+store.dispatch({ type: DELETE_Task, payload: 1 });
+console.log("Deleted state", store.getState());
+
+//recreating the 47 line where we are dispatching the task Using(Action Creator)
+// Step 5: creating action creator
+
+const addTask = (data) => {
+  return { type: ADD_Task, payload: data };
+};
+
+const deleteTask = (id) => {
+  return { type: DELETE_Task, payload: id };
+};
+
+store.dispatch(addTask("This line is added by Action Creator or a fucntion "));
+console.log(store.getState());
+
+store.dispatch(deleteTask(1));
+console.log(store.getState());
