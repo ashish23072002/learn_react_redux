@@ -34,7 +34,7 @@ const taskReducer = (state = intialState, action) => {
 // create react store using reducer
 // installed redux
 
-const store = createStore(taskReducer);
+export const store = createStore(taskReducer);
 console.log(store);
 // login to the intialState
 console.log("Initial state", store.getState());
