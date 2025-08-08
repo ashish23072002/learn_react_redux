@@ -67,6 +67,8 @@ const deleteTask = (id) => {
 };
 
 store.dispatch(addTask("This line is added by Action Creator or a fucntion "));
+store.dispatch(addTask("Buy apple  banana and  kiwiw "));
+store.dispatch(addTask("Buy Tamato "));
 console.log(store.getState());
 
 store.dispatch(deleteTask(1));
