@@ -1,60 +1,49 @@
 // import { useState } from "react";
-import { useSelector } from 'react-redux';
-import './Todo.css'
+import { useDispatch, useSelector } from "react-redux";
+import "./Todo.css";
+import { useState } from "react";
+import { addTask, deleteTask } from "../store";
 
-export const  Todo=()=> {
-  // const [tasks, setTasks] = useState([]);
-  // const [newTask, setNewTask] = useState("");
+export const Todo = () => {
+  const [task, setTask] = useState("");
+  const tasks = useSelector((state) => state.task);
+  // console.log(tasks)
 
-  // const handleAddTask = (e) => {
-  //   e.preventDefault(); // Prevent page reload on form submission
-  //   if (newTask.trim() === "") return;
-  //   setTasks([...tasks, { text: newTask, completed: false }]);
-  //   setNewTask("");
-  // };
+  const dispatch = useDispatch();
 
-  // const handleToggleComplete = (index) => {
-  //   const updatedTasks = tasks.map((task, i) =>
-  //     i === index ? { ...task, completed: !task.completed } : task
-  //   );
-  //   setTasks(updatedTasks);
-  // };
-
-  // const handleDeleteTask = (index) => {
-  //   const updatedTasks = tasks.filter((_, i) => i !== index);
-  //   setTasks(updatedTasks);
-  // };
-  
-
-  const tasks=useSelector((state)=>state.task)
-  console.log(tasks)
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    dispatch(addTask(task));
+    return setTask("");
+  };
+  const handleTaskDelete = (id) => {
+    return dispatch(deleteTask(id));
+  };
 
   return (
     <div className="todo-container">
       <h2>📝 To-Do List</h2>
-      <form className="todo-input-section" onSubmit={{}}>
+      <form className="todo-input-section" onSubmit={handleFormSubmit}>
         <input
           type="text"
-          value={{}}
-          // onChange={(e) => setNewTask(e.target.value)}
+          value={task}
+          onChange={(e) => setTask(e.target.value)}
           placeholder="Enter a task"
         />
         <button type="submit">Add</button>
       </form>
 
       <ul className="todo-list">
-        {tasks.map((task, index) => (
+        {tasks.map((curTask, index) => (
           <li
             key={index}
             className={`todo-item ${task.completed ? "completed" : ""}`}
           >
-            <span onClick={{}}>
-              {task}
-            </span>
-            <button onClick={{}}>❌</button>
+            {index}:<span>{curTask}</span>
+            <button onClick={() => handleTaskDelete(index)}>❌</button>
           </li>
         ))}
       </ul>
     </div>
   );
-}
+};

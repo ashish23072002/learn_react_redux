@@ -58,11 +58,11 @@ console.log("Deleted state", store.getState());
 //recreating the 47 line where we are dispatching the task Using(Action Creator)
 // Step 5: creating action creator
 
-const addTask = (data) => {
+export const addTask = (data) => {
   return { type: ADD_Task, payload: data };
 };
 
-const deleteTask = (id) => {
+export const deleteTask = (id) => {
   return { type: DELETE_Task, payload: id };
 };
 
