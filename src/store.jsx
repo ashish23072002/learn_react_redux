@@ -1,4 +1,6 @@
 import { createStore } from "redux";
+import { composeWithDevTools } from '@redux-devtools/extension';
+
 /* eslint-disable no-case-declarations */
 
 //this is the Reducer function (Create Reducer Functions )
@@ -34,7 +36,8 @@ const taskReducer = (state = intialState, action) => {
 // create react store using reducer
 // installed redux
 
-export const store = createStore(taskReducer);
+//Step 2: Crete  the redux store using the redcer
+export const store = createStore(taskReducer,composeWithDevTools());   
 console.log(store);
 // login to the intialState
 console.log("Initial state", store.getState());
