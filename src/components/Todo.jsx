@@ -2,7 +2,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./Todo.css";
 import { useState } from "react";
-import { addTask, deleteTask } from "../store";
+import { addTask, deleteTask, featchTask } from "../store";
 
 export const Todo = () => {
   const [task, setTask] = useState("");
@@ -19,6 +19,9 @@ export const Todo = () => {
   const handleTaskDelete = (id) => {
     return dispatch(deleteTask(id));
   };
+  const handleFeatchTask = () => {
+    dispatch(featchTask())
+  };
 
   return (
     <div className="todo-container">
@@ -32,6 +35,8 @@ export const Todo = () => {
         />
         <button type="submit">Add</button>
       </form>
+
+      <button onClick={handleFeatchTask}>Featch Data From Api</button>
 
       <ul className="todo-list">
         {tasks.map((curTask, index) => (
